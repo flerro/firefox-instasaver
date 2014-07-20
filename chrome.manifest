@@ -1,0 +1,6 @@
+content	instasaver	jar:chrome/instasaver.jar!/content/
+locale	instasaver	en-US	jar:chrome/instasaver.jar!/locale/en-US/
+locale	instasaver	it-IT	jar:chrome/instasaver.jar!/locale/it-IT/
+skin	instasaver	classic/1.0	jar:chrome/instasaver.jar!/skin/
+overlay	chrome://browser/content/browser.xul chrome://instasaver/content/firefoxOverlay.xul
+style	chrome://global/content/customizeToolbar.xul chrome://instasaver/skin/overlay.css

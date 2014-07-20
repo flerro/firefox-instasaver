@@ -1,0 +1,22 @@
+<!ENTITY instasaver.label "Instasaver">
+<!ENTITY submit.tooltip "Aggiungi ad Instapaper">
+<!ENTITY submit.label "Aggiungi ad Instapaper">
+<!ENTITY read.label "Visulizza in modalità lettura">
+<!ENTITY visit.label "Visita Instapaper.com">
+<!ENTITY credentials.label "Credenziali per Instapaper">
+<!ENTITY close.label "Chiudi">
+<!ENTITY prefs.title "Instasaver - Preferenze">
+<!ENTITY prefs.info "Instapaper login">
+<!ENTITY txtUsername.label "Nome utente">
+<!ENTITY txtUsername.accesskey "U">
+<!ENTITY txtPassword.label "Password">
+<!ENTITY txtPassword.ifany "se presente">
+<!ENTITY txtPassword.accesskey "P">
+<!ENTITY lblOtherOptions.label "Altre opzioni">
+<!ENTITY lblMinimalSkin.label "Usa icona moderna nella barra degli indirizzi *">
+<!ENTITY lblNotifyErrorsOnly.label "Mostra notifiche solo in caso di errori">
+<!ENTITY lblHideUrlbarButton.label "Nascondi il bottone nella barra degli indirizzi *">
+<!ENTITY lblMayRequireRestart.label "* Attiva dal prossimo avvio del browser">
+<!ENTITY account.get "Registra un account">
+<!ENTITY validate.label "Verifica le credenziali">
+

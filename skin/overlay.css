@@ -1,0 +1,9 @@
+#instasaver-toolbar-button{
+  list-style-image: url("chrome://instasaver/skin/instasaver-button.png");
+}
+[iconsize="small"] #instasaver-toolbar-button {
+   list-style-image: url("chrome://instasaver/skin/instasaver-button-small.png");
+}
+.instapaper-icon{
+  list-style-image: url("chrome://instasaver/skin/instasaver-button.png");
+}

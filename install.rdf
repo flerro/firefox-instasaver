@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" 
+ xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+  <Description about="urn:mozilla:install-manifest">
+    <em:id>instasaver@flerro</em:id>
+   	<em:localized>
+      <Description>
+        <em:locale>it-IT</em:locale>
+        <em:name>Instasaver</em:name>
+        <em:description>Invia la pagina correntemente visualizzata ad Instapaper per rimandarne la fruizione a più tardi</em:description>
+      </Description>
+    </em:localized>
+    <em:name>Instasaver</em:name>
+    <em:version>1.7</em:version>
+	<em:homepageURL>http://www.rolandfg.net/2010/02/12/instasaver/</em:homepageURL>
+    <em:creator>Francesco Lerro</em:creator>
+	<em:description>Submit currently visited web page to Instapaper for later reading.</em:description>
+    <em:optionsURL>chrome://instasaver/content/options.xul</em:optionsURL>
+    <em:iconURL>chrome://instasaver/content/instasaver.png</em:iconURL>
+    <em:targetApplication>
+      <Description>
+        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> <!-- firefox -->
+        <em:minVersion>3.0</em:minVersion>
+        <em:maxVersion>32.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+    <em:unpack>true</em:unpack>
+	<em:type>2</em:type>
+  </Description>
+</RDF>

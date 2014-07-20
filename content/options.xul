@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<!DOCTYPE prefwindow SYSTEM "chrome://instasaver/locale/instasaver.dtd">
+<prefwindow 
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+	id="instasaverPreferences"
+ 	title="&prefs.title;" 
+	buttons="accept,cancel,extra1"  
+	onbeforeaccept="updateLogin()"
+	buttonlabelextra1="Test login"  
+	ondialogextra1="validateLogin()"
+	width="450"
+	height="310"
+	oncancel="close()">
+
+  <script type="application/x-javascript" src="chrome://instasaver/content/overlay.js" />
+  <script>
+  	let defaultPwd = "anywilldo";
+
+	function loadLogin() { 
+		var login = instasaver.findLogin();
+		document.getElementById('txtUsername').value = login.username;
+		document.getElementById('txtPassword').value = login.password == defaultPwd ? "" : login.password;
+	}
+
+	function updateLogin() {
+		var user = document.getElementById('txtUsername').value;
+		var password = document.getElementById('txtPassword').value;
+		instasaver.storeLogin(user, password || defaultPwd);
+	}	
+
+	function validateLogin() {
+		var user = document.getElementById('txtUsername').value;
+		var password = document.getElementById('txtPassword').value;
+		instasaver.validateLogin(user, password);
+	}	
+		
+	window.addEventListener("load", loadLogin, false);
+  </script>
+  <stringbundleset id="stringbundleset">
+    <stringbundle id="instasaver-strings" src="chrome://instasaver/locale/instasaver.properties"/>
+  </stringbundleset>
+  <prefpane id="optionpane" style="padding: 8px">
+		<description style="margin-top: 4px; font-weight: bold;">&prefs.info;</description>
+		<preferences>
+		  <preference id="minimalSkinPref" name="extensions.instasaver.minimalSkin" type="bool"/>
+		  <preference id="notifyErrorsOnly" name="extensions.instasaver.notifyErrorsOnly" type="bool"/>
+		  <preference id="hideUrlbarButton" name="extensions.instasaver.hideUrlbarButton" type="bool"/>
+		</preferences>
+
+		<grid style="margin-top: 4px; margin-left: 8px;">
+			<columns>
+				<column flex="1"/>
+				<column flex="10"/>
+			</columns>
+			<rows>
+				<row>
+					<label style="margin-top:4px" accesskey="&txtUsername.accesskey;" control="txtUsername">&txtUsername.label;</label>
+					<textbox id="txtUsername" />
+				</row>
+				<row>
+					<label style="margin-top:4px" accesskey="&txtPassword.accesskey;" control="txtPassword">&txtPassword.label;</label>
+					<textbox id="txtPassword" type="password"/>
+				</row>
+			</rows>
+		</grid>
+		<hbox id="new-account" style="font-size:0.9em; margin-top:4px;">
+			<spacer flex="1"/>
+			<label class="text-link" onclick="close()" 
+					href="http://www.instapaper.com/user/register">&account.get;</label>
+		</hbox>
+
+		<vbox id="other-prefs" style="font-size:0.9em; margin-top:4px; margin-bottom:4px;">
+			<label style="font-weight: bold; margin-bottom:8px;">&lblOtherOptions.label;</label>
+			<checkbox style="margin-left:8px; margin-bottom:4px;" label="&lblNotifyErrorsOnly.label;" preference="notifyErrorsOnly"/>
+			<checkbox style="margin-left:8px; margin-bottom:4px;" label="&lblMinimalSkin.label;" preference="minimalSkinPref"/>
+			<checkbox style="margin-left:8px; margin-bottom:4px;" label="&lblHideUrlbarButton.label;" preference="hideUrlbarButton"/>
+			<hbox>
+				<spacer flex="1"/>
+				<label style="margin-bottom:8px;">&lblMayRequireRestart.label;</label>	
+			</hbox>
+		</vbox>
+
+	</prefpane>
+</prefwindow>

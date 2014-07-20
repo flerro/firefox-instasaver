@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://instasaver/skin/overlay.css" type="text/css"?>
+<!DOCTYPE overlay SYSTEM "chrome://instasaver/locale/instasaver.dtd">
+<overlay id="instasaver-overlay"
+         xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <script src="overlay.js"/>
+
+  <stringbundleset id="stringbundleset">
+    <stringbundle id="instasaver-strings" src="chrome://instasaver/locale/instasaver.properties"/>
+  </stringbundleset>
+
+  <menupopup id="menu_ToolsPopup">
+	<menu 
+		id="instasaver-tools-menu" 
+		label="&instasaver.label;"
+		insertbefore="options">
+		<menupopup>				
+			<menuitem label="&visit.label;" oncommand="instasaver.visit()" key="instasaver-visit-key"/>
+			<menuitem label="&prefs.title;" oncommand="instasaver.prefs();" />
+		</menupopup>
+	</menu>
+  </menupopup>
+
+  <menupopup id="contentAreaContextMenu">
+	<menu 
+		id="instasaver-readlater-context-menu" 
+		class="menuitem-iconic instapaper-icon"
+		label="&instasaver.label;"
+		insertafter="context-bookmarkpage">
+		<menupopup>
+			<menuitem label="&submit.label;" oncommand="instasaver.readLater();" key="instasaver-submit-key"/>
+			<menuitem label="&read.label;" oncommand="instasaver.readIt();" key="instasaver-read-key"/>
+		</menupopup>
+	</menu>
+  </menupopup>
+
+  <keyset>
+	  <key id="instasaver-read-key" modifiers="alt shift" key="R" oncommand="instasaver.readIt();"/>	
+      <key id="instasaver-submit-key" modifiers="alt shift" key="I" oncommand="instasaver.readLater();"/>
+      <key id="instasaver-visit-key" modifiers="alt shift" key="G" oncommand="instasaver.visit();"/>
+  </keyset>
+
+  <toolbarpalette id="BrowserToolbarPalette">
+	  <toolbarbutton id="instasaver-toolbar-button"
+			type="menu"
+			label="&instasaver.label;"
+			tooltiptext="&submit.tooltip;"
+			height="64" style="padding: 8px">
+				<menupopup>	
+					<menuitem label="&submit.label;" oncommand="instasaver.readLater();" key="instasaver-submit-key"/>
+					<menuitem label="&read.label;" oncommand="instasaver.readIt();" key="instasaver-read-key"/>
+					<menuitem label="&visit.label;" oncommand="instasaver.visit()" key="instasaver-visit-key"/>
+					<menuseparator />
+					<menuitem label="&prefs.title;" oncommand="instasaver.prefs();" />
+				</menupopup>
+	  </toolbarbutton>	
+  </toolbarpalette>
+  	
+  <hbox id="urlbar-icons">
+		<image id="instasaver-submit-button"
+			class="plain urlbar-icon" style="-moz-user-focus: none;"
+			src="chrome://instasaver/skin/urlbar-button.png" 
+			tooltiptext="&submit.tooltip;"
+			insertbefore="feed-button"
+			onload="instasaver.initUrlbarIcon()"
+			onclick="if (event.button == 0) instasaver.readLater(); else return false;" />
+  </hbox>
+</overlay>
