@@ -53,7 +53,11 @@ var instasaver = (function(){
 		};
 
 		var fromBundle = function(msg){
-			return document.getElementById("instasaver-strings").getString(msg);
+			try {
+				return document.getElementById("instasaver-strings").getString(msg);
+			} catch (e) {
+				return msg
+			}
 		};
 	
 		var notify = function(msg, icon, clickable) {
@@ -188,13 +192,13 @@ var instasaver = (function(){
 						
 			try {				
 				var req = new XMLHttpRequest();
-				req.onreadystatechange = function (aEvt) {  
+				req.onreadystatechange = function (aEvt) { 
 				   if (req.readyState == 4) {
-						 if(req.status == 200) {
-								notify(fromBundle("valid_user"), Alert.OK, false);
-						  } else {
-						  		notify(fromBundle(req.status), Alert.ERROR, (req.status == 403));
-						  } 
+						if(req.status == 200) {
+							notify(fromBundle("valid_user"), Alert.OK, false);
+						} else {
+						  	notify(fromBundle(req.status), Alert.ERROR, (req.status == 403));
+						} 
 				 	}  
 				};
 
