@@ -44,9 +44,9 @@
   <toolbarpalette id="BrowserToolbarPalette">
 	  <toolbarbutton id="instasaver-toolbar-button"
 			type="menu"
+	  		class="toolbarbutton-1"
 			label="&instasaver.label;"
-			tooltiptext="&submit.tooltip;"
-			height="64" style="padding: 8px">
+			tooltiptext="&submit.tooltip;">
 				<menupopup>	
 					<menuitem label="&submit.label;" oncommand="instasaver.readLater();" key="instasaver-submit-key"/>
 					<menuitem label="&read.label;" oncommand="instasaver.readIt();" key="instasaver-read-key"/>

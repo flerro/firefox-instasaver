@@ -5,10 +5,9 @@
 	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
 	id="instasaverPreferences"
  	title="&prefs.title;" 
-	buttons="accept,cancel,extra1"  
-	onbeforeaccept="updateLogin()"
-	buttonlabelextra1="Test login"  
-	ondialogextra1="validateLogin()"
+	buttons="cancel,extra1"
+	buttonlabelextra1="OK"  
+	ondialogextra1="updateLogin();close()"
 	width="450"
 	height="310"
 	oncancel="close()">
@@ -66,6 +65,8 @@
 		</grid>
 		<hbox id="new-account" style="font-size:0.9em; margin-top:4px;">
 			<spacer flex="1"/>
+			<label class="text-link" onclick="validateLogin()">&validate.label;</label>
+			<label>|</label>
 			<label class="text-link" onclick="close()" 
 					href="http://www.instapaper.com/user/register">&account.get;</label>
 		</hbox>

@@ -49,7 +49,12 @@ var instasaver = (function(){
 		};
 
 		var log = function(msg) {
-			consoleService.logStringMessage(msg);
+			try {
+				// about:config  -- Set devtools.errorconsole.enabled to true
+				consoleService.logStringMessage(msg);
+			} catch(err) {
+				// ignore error 
+			}
 		};
 
 		var fromBundle = function(msg){
@@ -191,7 +196,7 @@ var instasaver = (function(){
 							+ '&password=' + encodeURIComponent(password);
 						
 			try {				
-				var req = new XMLHttpRequest();
+				var req = new XMLHttpRequest(); 
 				req.onreadystatechange = function (aEvt) { 
 				   if (req.readyState == 4) {
 						if(req.status == 200) {
