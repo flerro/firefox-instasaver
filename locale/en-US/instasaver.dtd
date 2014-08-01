@@ -6,7 +6,7 @@
 <!ENTITY credentials.label "Instapaper login">
 <!ENTITY close.label "Close">
 <!ENTITY prefs.title "Instasaver preferences">
-<!ENTITY prefs.info "Instapaper login">
+<!ENTITY prefs.info "Instapaper login credentials">
 <!ENTITY txtUsername.label "Username">
 <!ENTITY txtUsername.accesskey "U">
 <!ENTITY txtPassword.label "Password">
@@ -14,8 +14,8 @@
 <!ENTITY txtPassword.accesskey "P">
 <!ENTITY lblOtherOptions.label "Other options">
 <!ENTITY lblMinimalSkin.label "Use modern icon on url-bar *">
-<!ENTITY lblNotifyErrorsOnly.label "Only display error notifications">
+<!ENTITY lblNotifyErrorsOnly.label "Display notifications only on error">
 <!ENTITY lblHideUrlbarButton.label "Hide submit icon from urlbar *">
 <!ENTITY lblMayRequireRestart.label "* Activated on bowser restart">
-<!ENTITY account.get "Register an account">
-<!ENTITY validate.label "Test login credentials">
+<!ENTITY account.get "Sign-up on Instapaper.com">
+<!ENTITY validate.label "Test login">

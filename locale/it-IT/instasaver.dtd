@@ -17,6 +17,6 @@
 <!ENTITY lblNotifyErrorsOnly.label "Mostra notifiche solo in caso di errori">
 <!ENTITY lblHideUrlbarButton.label "Nascondi il bottone nella barra degli indirizzi *">
 <!ENTITY lblMayRequireRestart.label "* Attiva dal prossimo avvio del browser">
-<!ENTITY account.get "Registra un account">
+<!ENTITY account.get "Registrati su Instapaper.com">
 <!ENTITY validate.label "Verifica le credenziali">
 
