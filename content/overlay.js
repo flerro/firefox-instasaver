@@ -24,11 +24,23 @@ var instasaver = (function(){
 		};
 
 		var notifyErrorsOnly = function() {
-			return prefsService.getBoolPref("extensions.instasaver.notifyErrorsOnly")
+			var defaultPropValue = false;
+			try {
+				return prefsService.getBoolPref("extensions.instasaver.notifyErrorsOnly")
+			} catch (e) {
+				prefsService.setBoolPref("extensions.instasaver.notifyErrorsOnly", defaultPropValue);
+				return defaultPropValue;
+			}
 		};
 	
 		var hideUrlbarButton = function() {
-			return prefsService.getBoolPref("extensions.instasaver.hideUrlbarButton")
+			var defaultPropValue = false;
+			try {
+				return prefsService.getBoolPref("extensions.instasaver.hideUrlbarButton")
+			} catch (e) {
+				prefsService.setBoolPref("extensions.instasaver.hideUrlbarButton", defaultPropValue);
+				return defaultPropValue;
+			}
 		};
 
 		var findBookmark = function() {
@@ -66,7 +78,7 @@ var instasaver = (function(){
 		};
 	
 		var notify = function(msg, icon, clickable) {
-			var title = "Instasaver"
+			var title = "Instasaver";
 			var image = 'chrome://instasaver/skin/' + icon;
 			var listener = (clickable) ? me : null;
 			try {
@@ -134,8 +146,8 @@ var instasaver = (function(){
 				 this.update("urlbar-check.png");
 			},
 			done: function(){
-				var obj = this
-				this.success()
+				var obj = this;
+				this.success();
 				setInterval(function(){ obj.idle() }, 1500);
 			},
 			update: function(image) {
@@ -258,7 +270,7 @@ var instasaver = (function(){
 				if (req.readyState == 4) {
 					switch (req.status) {
 						case 201:
-								urlbarNotifier.done()
+								urlbarNotifier.done();
 								if (!notifyErrorsOnly()) {
 									var what = (bookmark.title) ? bookmark.title : bookmark.url;
 									var msg = fromBundle('saved') + ' "' + what.substring(0, 30) + '"...';
@@ -266,7 +278,7 @@ var instasaver = (function(){
 								}
 								break;
 						default: 
-								urlbarNotifier.idle()
+								urlbarNotifier.idle();
 								var shouldChangeCredentials = req.status == 403;
 								notify(fromBundle(req.status), Alert.ERROR, shouldChangeCredentials);
 								break;
@@ -302,11 +314,14 @@ var instasaver = (function(){
 		};
 
 		var firstRun = true;
-		this.initUrlbarIcon = function() {
+		this.setup = function() {
 			if (firstRun) {
-				urlbarNotifier.idle()
 				firstRun = false;	
+				urlbarNotifier.idle()
 			}
+
+			// Keyboard shortcut
+			// TODO
 		};
 
 	} // end constructor

@@ -63,7 +63,7 @@
 			src="chrome://instasaver/skin/urlbar-button.png" 
 			tooltiptext="&submit.tooltip;"
 			insertbefore="feed-button"
-			onload="instasaver.initUrlbarIcon()"
+			onload="instasaver.setup()"
 			onclick="if (event.button == 0) instasaver.readLater(); else return false;" />
   </hbox>
 </overlay>

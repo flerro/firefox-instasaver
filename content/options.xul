@@ -9,7 +9,7 @@
 	buttonlabelextra1="OK"  
 	ondialogextra1="updateLogin();close()"
 	width="450"
-	height="310"
+	height="360"
 	oncancel="close()">
 
   <script type="application/x-javascript" src="chrome://instasaver/content/overlay.js" />
