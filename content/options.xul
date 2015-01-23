@@ -26,6 +26,12 @@
 		var user = document.getElementById('txtUsername').value;
 		var password = document.getElementById('txtPassword').value;
 		instasaver.storeLogin(user, password || defaultPwd);
+
+		instasaver.storePrefs(
+			document.getElementById("notifyErrorsOnly").value,
+			document.getElementById("minimalSkinPref").value,
+			document.getElementById("hideUrlbarButton").value
+		);
 	}	
 
 	function validateLogin() {
@@ -42,8 +48,8 @@
   <prefpane id="optionpane" style="padding: 8px">
 		<description style="margin-top: 4px; font-weight: bold;">&prefs.info;</description>
 		<preferences>
-		  <preference id="minimalSkinPref" name="extensions.instasaver.minimalSkin" type="bool"/>
 		  <preference id="notifyErrorsOnly" name="extensions.instasaver.notifyErrorsOnly" type="bool"/>
+		  <preference id="minimalSkinPref" name="extensions.instasaver.minimalSkin" type="bool"/>
 		  <preference id="hideUrlbarButton" name="extensions.instasaver.hideUrlbarButton" type="bool"/>
 		</preferences>
 

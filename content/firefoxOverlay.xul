@@ -60,10 +60,10 @@
   <hbox id="urlbar-icons">
 		<image id="instasaver-submit-button"
 			class="plain urlbar-icon" style="-moz-user-focus: none;"
-			src="chrome://instasaver/skin/urlbar-button.png" 
+			src="chrome://instasaver/skin/urlbar-button.png"
 			tooltiptext="&submit.tooltip;"
 			insertbefore="feed-button"
-			onload="instasaver.setup()"
+			onload="instasaver.initUrlbarIcon()"
 			onclick="if (event.button == 0) instasaver.readLater(); else return false;" />
   </hbox>
 </overlay>

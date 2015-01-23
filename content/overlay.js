@@ -20,26 +20,33 @@ var instasaver = (function(){
 		
 		var Alert = {
 			OK: "notify-ok.png",
-			ERROR: "notify-error.png",
+			ERROR: "notify-error.png"
 		};
 
 		var notifyErrorsOnly = function() {
 			var defaultPropValue = false;
 			try {
-				return prefsService.getBoolPref("extensions.instasaver.notifyErrorsOnly")
-			} catch (e) {
-				prefsService.setBoolPref("extensions.instasaver.notifyErrorsOnly", defaultPropValue);
+				return prefsService.getBoolPref("extensions.instasaver.notifyErrorsOnly");
+			} catch (err) {
 				return defaultPropValue;
 			}
 		};
-	
+
+		var minimalSkin = function() {
+			var defaultPropValue = true;
+			try {
+				return  prefsService.getBoolPref("extensions.instasaver.minimalSkin");
+			} catch (err) {
+				return defaultPropValue;
+			}
+		};
+
 		var hideUrlbarButton = function() {
 			var defaultPropValue = false;
 			try {
-				return prefsService.getBoolPref("extensions.instasaver.hideUrlbarButton")
-			} catch (e) {
-				prefsService.setBoolPref("extensions.instasaver.hideUrlbarButton", defaultPropValue);
-				return defaultPropValue;
+				return prefsService.getBoolPref("extensions.instasaver.hideUrlbarButton");
+			} catch (err) {
+				return false;
 			}
 		};
 
@@ -130,25 +137,32 @@ var instasaver = (function(){
 			  }
 		};
 
+
+
 		var urlbarNotifier = {
+			submitting: false,
 			idle: function(){
+				this.submitting = false;
 				if (hideUrlbarButton()) {
-					this.update("urlbar-button" + suffix + ".png");	
+					this.update("");
 				} else {
-					var suffix = prefsService.getBoolPref("extensions.instasaver.minimalSkin") ? "" : "-old"
-					this.update("urlbar-button" + suffix + ".png");	
+					var suffix = minimalSkin() ? "" : "-old";
+					this.update("urlbar-button" + suffix + ".png");
 				}
 			},
 			running: function(){
+				this.submitting = true;
 				this.update("urlbar-loading.gif");
 			},
 			success: function(){
-				 this.update("urlbar-check.png");
+				this.submitting = true;
+				this.update("urlbar-check.png");
 			},
 			done: function(){
+				this.submitting = true;
 				var obj = this;
 				this.success();
-				setInterval(function(){ obj.idle() }, 1500);
+				setTimeout(function(){ obj.idle() }, 1500);
 			},
 			update: function(image) {
 				var path = 'chrome://instasaver/skin/';
@@ -173,6 +187,12 @@ var instasaver = (function(){
 				log("No login found");
 				return logins;
 			}
+		};
+
+		this.storePrefs = function(notifyErrors, minimalSkin, hideButton) {
+			prefsService.setBoolPref("extensions.instasaver.notifyErrorsOnly", notifyErrors);
+			prefsService.setBoolPref("extensions.instasaver.minimalSkin", minimalSkin);
+			prefsService.setBoolPref("extensions.instasaver.hideUrlbarButton", hideButton);
 		};
 
 		this.storeLogin = function(username, password) {
@@ -313,15 +333,10 @@ var instasaver = (function(){
 			openOrReuseTab("http://www.instapaper.com/text?u=" + encodeURIComponent(bookmark.url));
 		};
 
-		var firstRun = true;
-		this.setup = function() {
-			if (firstRun) {
-				firstRun = false;	
-				urlbarNotifier.idle()
+		this.initUrlbarIcon = function() {
+			if (!urlbarNotifier.submitting) {
+				urlbarNotifier.idle();
 			}
-
-			// Keyboard shortcut
-			// TODO
 		};
 
 	} // end constructor
